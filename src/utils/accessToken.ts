@@ -27,7 +27,7 @@ export function isUserAuthenticated() {
     const accessToken = getAccessToken();
     const decoded: token = jwtDecode(accessToken);
     const access = decoded["user.access"];
-    if (access === "admin" || access === "user") {
+    if (access) {
       return true;
     }
   } catch (err) {

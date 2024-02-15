@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./components/pages/HomePage";
-import { isUserAuthenticated, userAccess } from "./utils/accessToken";
+import { isUserAuthenticated } from "./utils/accessToken";
 import PrivateRoute from "./navigation/PrivateRoute";
 import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import AdminPage from "./components/pages/AdminPage";
+import AdminRoute from "./navigation/AdminRoute";
 
 const AppRoutes: FC = () => {
   return (
@@ -48,7 +49,9 @@ const AppRoutes: FC = () => {
         <Route
           path="/admin"
           element={
-            userAccess() === "admin" ? <AdminPage /> : <Navigate to="/" />
+            <AdminRoute>
+              <AdminPage />
+            </AdminRoute>
           }
         />
       </Routes>
