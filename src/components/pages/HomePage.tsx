@@ -29,23 +29,27 @@ const HomePage: FC = () => {
 
   return (
     <BasePage>
-      <ResponsiveContainer aspect={1.7} width={"100%"}>
-        <BarChart data={graphData} margin={{ left: 40, right: 30 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="interval" />
-          <YAxis label={{ value: "€/MWh", position: "insideLeft", dx: -40 }} />
-          <Legend />
-          <Bar dataKey="price" fill="#1e5355" legendType="none" />
-          <Tooltip
-            labelFormatter={(label) => {
-              return `Klo: ${label}`;
-            }}
-            formatter={(value) => {
-              return [value, "Hinta"];
-            }}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+      <div className="chart">
+        <ResponsiveContainer aspect={2.3} width={"100%"}>
+          <BarChart data={graphData} margin={{ left: 40, right: 30 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="interval" />
+            <YAxis
+              label={{ value: "€/MWh", position: "insideLeft", dx: -40 }}
+            />
+            <Tooltip
+              labelFormatter={(label) => {
+                return `Klo: ${label}`;
+              }}
+              formatter={(value) => {
+                return [`${value} €/MWh`, "Hinta"];
+              }}
+            />
+            <Bar dataKey="price" fill="#1e5355" legendType="none" />
+            <Legend />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </BasePage>
   );
 };

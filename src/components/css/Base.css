@@ -3,20 +3,25 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   height: 100%;
+  overflow: hidden;
 }
 
 .root {
   min-height: 100vh;
   width: 100%;
-  background-color: bisque;
+  background-color: white;
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .header,
 .footer {
-  background-color: lightblue;
+  background-color: #1e272e;
+  color: lightgray;
+  font-size: 24px;
+  font-weight: bold;
   padding: 10px;
   text-align: center;
   width: 100%;
@@ -25,4 +30,11 @@ body {
 .main {
   margin: 20px;
   flex-grow: 1;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.chart {
+  align-items: center;
+  padding: 20px;
 }
