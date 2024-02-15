@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useGetElecSpotToday } from "../../hooks/useElecPriceGql";
-import Base from "./Base";
+import BasePage from "./BasePage";
 import {
   Bar,
   BarChart,
@@ -12,7 +12,7 @@ import {
   YAxis,
 } from "recharts";
 
-const Home: FC = () => {
+const HomePage: FC = () => {
   const today = "20240125";
   const [graphData, setGraphData] = useState<any>("");
   const elecPricesToday = useGetElecSpotToday({
@@ -28,7 +28,7 @@ const Home: FC = () => {
   }, [elecPricesToday.data]);
 
   return (
-    <Base>
+    <BasePage>
       <ResponsiveContainer aspect={1.7} width={"100%"}>
         <BarChart data={graphData} margin={{ left: 40, right: 30 }}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -46,8 +46,8 @@ const Home: FC = () => {
           />
         </BarChart>
       </ResponsiveContainer>
-    </Base>
+    </BasePage>
   );
 };
 
-export default Home;
+export default HomePage;

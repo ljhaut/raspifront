@@ -1,6 +1,8 @@
 import { FC, FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Register: FC = () => {
+const RegisterPage: FC = () => {
+  const navigator = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,6 +24,7 @@ const Register: FC = () => {
 
       if (response.status === 201) {
         console.log("User created succesfully", data);
+        navigator("/login");
       } else {
         console.error("Registration error:", data);
       }
@@ -54,4 +57,4 @@ const Register: FC = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

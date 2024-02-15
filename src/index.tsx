@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
   ApolloClient,
@@ -10,18 +9,18 @@ import {
   ApolloLink,
   Observable,
 } from "@apollo/client";
-import Cookies from "universal-cookie";
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken, setAccessToken } from "./utils/accessToken";
 import { TokenRefreshLink } from "apollo-link-token-refresh";
 import { JwtPayload, jwtDecode } from "jwt-decode";
+import AppRoutes from "./AppRoutes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const cookies = new Cookies();
-
+// https://www.apollographql.com/docs/react/api/link/introduction/
+// add access token to header in a query
 const requestLink = new ApolloLink(
   (operation, forward) =>
     new Observable((observer) => {
@@ -52,8 +51,10 @@ const requestLink = new ApolloLink(
     })
 );
 
+// initialize apollo gql engine
 const client = new ApolloClient({
   link: ApolloLink.from([
+    // refresh token if necessary
     new TokenRefreshLink({
       accessTokenField: "accessToken",
       isTokenValidOrUndefined: () => {
@@ -105,7 +106,7 @@ const client = new ApolloClient({
 
 root.render(
   <ApolloProvider client={client}>
-    <App />
+    <AppRoutes />
   </ApolloProvider>
 );
 

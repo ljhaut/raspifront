@@ -1,27 +1,56 @@
 import { FC } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Home from "./components/pages/Home";
-import Login from "./components/pages/Login";
-import Register from "./components/pages/Register";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import HomePage from "./components/pages/HomePage";
+import { isUserAuthenticated, userAccess } from "./utils/accessToken";
+import PrivateRoute from "./navigation/PrivateRoute";
+import LoginPage from "./components/pages/LoginPage";
+import RegisterPage from "./components/pages/RegisterPage";
+import AdminPage from "./components/pages/AdminPage";
 
 const AppRoutes: FC = () => {
   return (
     <BrowserRouter>
-      <header>
-        <div>
-          <Link to="/">home</Link>
-        </div>
-        <div>
-          <Link to="/register">register</Link>
-        </div>
-        <div>
-          <Link to="/login">login</Link>
-        </div>
-      </header>
       <Routes>
-        <Route path="/" Component={Home} />
-        <Route path="/register" Component={Register} />
-        <Route path="/login" Component={Login} />
+        <Route
+          path="*"
+          element={
+            isUserAuthenticated() ? (
+              <Navigate to="/home" />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <>
+              <RegisterPage />
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <>
+              <LoginPage />
+            </>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            userAccess() === "admin" ? <AdminPage /> : <Navigate to="/" />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
