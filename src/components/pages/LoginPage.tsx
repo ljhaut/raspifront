@@ -2,6 +2,7 @@ import { FC, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setAccessToken } from "../../utils/accessToken";
 import { Link } from "react-router-dom";
+import "../css/LoginPage.css";
 
 const LoginPage: FC = () => {
   const navigator = useNavigate();
@@ -38,28 +39,33 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <div>
-      <Link to="/register">register</Link>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            value={username}
-            placeholder="username"
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-          <input
-            type="password"
-            value={password}
-            placeholder="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </div>
-        <button type="submit">login</button>
-      </form>
+    <div className="container">
+      <div className="login-page">
+        <h2 className="page-title">Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              value={username}
+              placeholder="username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+            <input
+              type="password"
+              value={password}
+              placeholder="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+          <button type="submit">login</button>
+        </form>
+        <Link to="/register" className="register-link">
+          register
+        </Link>
+      </div>
     </div>
   );
 };

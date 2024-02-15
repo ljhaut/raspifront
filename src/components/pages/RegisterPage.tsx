@@ -1,5 +1,6 @@
 import { FC, FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "../css/RegisterPage.css";
 
 const RegisterPage: FC = () => {
   const navigator = useNavigate();
@@ -34,26 +35,32 @@ const RegisterPage: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <input
-          value={username}
-          placeholder="username"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-        <input
-          type="password"
-          value={password}
-          placeholder="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-      </div>
-      <button type="submit">register</button>
-    </form>
+    <div className="container">
+      <form onSubmit={handleSubmit} className="register-form">
+        <h2 className="page-title">Register</h2>
+        <div>
+          <input
+            value={username}
+            placeholder="username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+          <input
+            type="password"
+            value={password}
+            placeholder="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </div>
+        <button type="submit">register</button>
+        <Link to="/login" className="back">
+          back
+        </Link>
+      </form>
+    </div>
   );
 };
 

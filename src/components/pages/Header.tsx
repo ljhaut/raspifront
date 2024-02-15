@@ -42,11 +42,11 @@ const AdminButton: FC = () => {
 
 const Header: FC = () => {
   const location = useLocation();
-  const title = location.pathname === "/admin" ? "Adminsivu" : "Kotisivu";
+  const title = location.pathname === "/admin" ? "Admin page" : "Home page";
   return (
     <div className="header">
       <div className="inner-header">
-        <div>
+        <div className="left">
           <HomeButton />
           {userAccess() === "admin" && <AdminButton />}
         </div>
