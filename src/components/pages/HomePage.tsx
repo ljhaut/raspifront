@@ -13,6 +13,7 @@ import {
 } from "recharts";
 
 const HomePage: FC = () => {
+  const currentTime = new Date();
   const today = "20240125";
   const [graphData, setGraphData] = useState<any>("");
   const elecPricesToday = useGetElecSpotToday({
@@ -29,6 +30,7 @@ const HomePage: FC = () => {
 
   return (
     <BasePage>
+      <div>{`Sähkön SPOT-hinta tänään ${currentTime.toLocaleDateString()}`}</div>
       <div className="chart">
         <ResponsiveContainer aspect={2.3} width={"100%"}>
           <BarChart data={graphData} margin={{ left: 40, right: 30 }}>
