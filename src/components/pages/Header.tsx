@@ -11,7 +11,7 @@ const LogOutButton: FC = () => {
     const cookies = new Cookies();
     cookies.remove("jwt");
 
-    const response = await fetch("http://localhost:5002/logout", {
+    const response = await fetch(process.env.REACT_APP_LOGOUT_URL!, {
       method: "POST",
       credentials: "include",
     });

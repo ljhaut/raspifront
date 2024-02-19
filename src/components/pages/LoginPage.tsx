@@ -13,7 +13,7 @@ const LoginPage: FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5002/login", {
+      const response = await fetch(process.env.REACT_APP_LOGIN_URL!, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

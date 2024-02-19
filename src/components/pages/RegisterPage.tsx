@@ -11,7 +11,7 @@ const RegisterPage: FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5002/register", {
+      const response = await fetch(process.env.REACT_APP_REGISTER_URL!, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
