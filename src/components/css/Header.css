@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-header {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.left {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+}
