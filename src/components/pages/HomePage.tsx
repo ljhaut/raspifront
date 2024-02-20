@@ -11,10 +11,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { formatISO, startOfDay } from "date-fns";
 
 const HomePage: FC = () => {
   const currentTime = new Date();
-  const today = "20240125";
+  const today = formatISO(startOfDay(currentTime));
   const [graphData, setGraphData] = useState<any>("");
   const elecPricesToday = useGetElecSpotToday({
     variables: {
